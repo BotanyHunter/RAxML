@@ -47,12 +47,13 @@ def main():
     if noErrors == 1:
         myGenes = []
         myFiletypes = []
-        filetypes = ('*.phy', '*.nex') # the tuple of file types
+        filetypes = ('*.phy', '*.phylip', '*.nex') # the tuple of file types
         for filetype in filetypes:
             for file in glob.glob(data_dir + "/" + filetype):
                 if filetype == "*.nex" :
-                    phyFilename = os.path.splitext(os.path.basename(file))[0] + ".phy"
-                    if os.path.isfile(data_dir + "/" + phyFilename):
+                    phyFilename1 = os.path.splitext(os.path.basename(file))[0] + ".phy"
+                    phyFilename2 = os.path.splitext(os.path.basename(file))[0] + ".phylip"
+                    if (os.path.isfile(data_dir + "/" + phyFilename1) or os.path.isfile(data_dir + "/" + phyFilename2)):
                         print("ERROR: phylip file already exists for a nexus file("+file+").  Data would be overwritten when nexus file created.")
                         noErrors = 0
                 myGenes.append(os.path.basename(file))
