@@ -6,31 +6,40 @@ HTCondor files to run RAxML on all files in a directory
 
 Navigate to your working directory on the HTCondor submit node and type the following command:
 
+```
 git clone https://github.com/BotanyHunter/RAxML.git
+```
+
 which will create a new directory called RAxML and download:
 
-five python scripts
-this README file
-the RAxML executable, raxmlHPC, version 8.1.15 (1.180.370 bytes)
+<ul>
+<li>five python scripts</li>
+<li>this README file</li>
+<li>the RAxML executable, raxmlHPC, version 8.1.15 (1.180.370 bytes)</li>
+</ul>
 
 ##Your molecular data
 
-Create a new directory inside the RAxML directory and give it a name such as data.
+Create a new directory inside the RAxML directory and give it a name such as <span style="color:blue"><i>data</i></span>.
 
-Place all files on which you would like to run RAxML (in phylip format) into the directory. The file extensions must be ".phylip".
+Place all files on which you would like to run RAxML (in phylip format) into the directory. The file extensions may either be ".phylip" or ".phy".
 
 ##Set up the HTCondor job
 
 set_up_RAxML.py is a python script that creates the Condor DAG and submit files.  To use enter the following command:
 
+```
                 python set_up_RAxML.py data_directory -R "raxml options"
+```
 
-replace data_directory with the path to the directory where your data is located.
-replace raxml options with the raxml options to be used.
+Replace data_directory with the path to the directory where your data is located.
+Replace raxml options with the raxml options to be used.
 
 Example:
 
-               python set_up_RAxML.py data_new -R "–x 12345 –p 12345 – N 200 –k -f a –m GTRGAMMA"
+```
+               python set_up_RAxML.py data_new -R "â€“x 12345 â€“p 12345 â€“ N 200 â€“k -f a â€“m GTRGAMMA"
+```
 
 Please do not use the -s and -n options.
     The -s option, the input file, will be set to each of the input files.
